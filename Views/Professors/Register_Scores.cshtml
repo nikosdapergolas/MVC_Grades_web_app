@@ -1,0 +1,90 @@
+﻿@model IEnumerable<VathmologioMVC.Models.CourseHasStudent>
+
+@{
+    ViewData["Title"] = "Register_Scores";
+    ViewData["Grade"] = "-1";
+    List<int> grades = new List<int>();
+    grades.Add(0);
+    grades.Add(1);
+    grades.Add(2);
+    grades.Add(3);
+    grades.Add(4);
+    grades.Add(5);
+    grades.Add(6);
+    grades.Add(7);
+    grades.Add(8);
+    grades.Add(9);
+    grades.Add(10);
+}
+
+<h1>Register Scores</h1>
+<hr />
+<br />
+
+@*<p>
+    <a asp-action="Create">Create New</a>
+</p>*@
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Course Title
+            </th>
+            <th>
+                Student's Registration Number:
+            </th>
+            <th>
+                Student's Surname:
+            </th>
+            <th>
+                Grade:
+            </th>
+            <th>
+
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourseIdCourseNavigation.CourseTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StudentsRegistrationNumberNavigation.RegistrationNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StudentsRegistrationNumberNavigation.Surname)
+            </td>
+            <td>
+                No Grade yet..
+                @*@Html.DropDownListFor(model => item.GradeCourseStudent,grades)*@
+                @*@Html.DisplayFor(modelItem => item.GradeCourseStudent)*@
+                @*asp-for="GradeCourseStudent"*@
+                @*<form asp-controller="Professors" asp-action="Update_score">
+                    <input type="hidden" asp-for="@item.Id" />
+                    <input type="hidden" asp-for="@item.CourseIdCourse" />
+                    <input type="hidden" asp-for="@item.StudentsRegistrationNumber" />
+                    <select asp-for="@item.GradeCourseStudent" class="form-control" >
+                        <option>0</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                        <option>7</option>
+                        <option>8</option>
+                        <option>9</option>
+                        <option>10</option>
+                    </select>
+                    <input type="submit" value="Register" class="btn btn-success" />
+                </form>*@
+            </td>
+            <td>
+                <a asp-controller="CourseHasStudents" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">Register</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

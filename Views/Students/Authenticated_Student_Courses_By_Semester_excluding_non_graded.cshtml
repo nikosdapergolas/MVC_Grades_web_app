@@ -1,0 +1,71 @@
+﻿@model IEnumerable<VathmologioMVC.Models.CourseHasStudent>
+
+@{
+    ViewData["Title"] = "Authenticated_Student_Courses_By_Semester";
+}
+
+<h1>My Scores (excluding non graded) (Sorted by semester)</h1>
+<hr />
+<br />
+
+<p>
+    <a asp-action="Authenticated_Student_Courses_By_Semester" class="btn btn-secondary">Sort by Semester</a>
+    <a asp-action="Authenticated_Student_Courses_By_Course_Title" class="btn btn-primary">Sort by Course Title</a>
+    <a asp-action="Authenticated_Student_Courses_By_Semester_excluding_non_graded" class="btn btn-light">Show only graded Courses</a>
+</p>
+<br />
+
+<!--Showcase a different table for each semester-->
+@for(int i=1; i<=8; i++)
+{
+    <table class="table">
+    <thead>
+        <tr>
+            <th>
+                <b>Surname</b>
+            </th>
+            <th>
+                <b>Course Semester</b>
+            </th>
+            <th>
+                <b>Course Title</b>
+            </th>
+            <th>
+                <b>Grade</b>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+
+@foreach (var item in Model) {
+    @if(item.CourseIdCourseNavigation.CourseSemester.Equals(i.ToString()))
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.StudentsRegistrationNumberNavigation.Surname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourseIdCourseNavigation.CourseSemester)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourseIdCourseNavigation.CourseTitle)
+            </td>
+            <td>
+                @if(item.GradeCourseStudent >= 0)
+                {
+                    @Html.DisplayFor(modelItem => item.GradeCourseStudent)
+                }
+                else
+                {
+                    <p>There is no Grade yet..</p>
+                }
+            </td>
+        </tr>
+    }
+}
+    </tbody>
+</table>
+<hr />
+<br />
+}
+

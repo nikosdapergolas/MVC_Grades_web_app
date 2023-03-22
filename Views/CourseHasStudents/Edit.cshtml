@@ -1,0 +1,66 @@
+﻿@model VathmologioMVC.Models.MetaData.RegisterGrade
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Assign a Grade</h1>
+<hr />
+<br />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-controller="CourseHasStudents" asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="@Model.Id" />
+            <div class="form-group">
+                <label asp-for="CourseIdCourse" class="control-label">Course Id</label>
+                @*<select asp-for="CourseIdCourse" class="form-control" asp-items="ViewBag.CourseIdCourse.Where(ViewBag.CourseIdCourse.Equals(Model.CourseIdCourse))"></select>
+                <span asp-validation-for="CourseIdCourse" class="text-danger"></span>*@
+                <select asp-for="CourseIdCourse" class="form-control" >
+                    <option>@Model.CourseIdCourse</option>
+                </select>
+                <br />
+            </div>
+            <div class="form-group">
+                <label asp-for="StudentsRegistrationNumber" class="control-label">Student Id</label>
+                @*<select asp-for="StudentsRegistrationNumber" class="form-control" asp-items="ViewBag.StudentsRegistrationNumber"></select>
+                <span asp-validation-for="StudentsRegistrationNumber" class="text-danger"></span>*@
+                <select asp-for="StudentsRegistrationNumber" class="form-control" >
+                    <option>@Model.StudentsRegistrationNumber</option>
+                </select>
+                <br />
+            </div>
+            <div class="form-group">
+                <label asp-for="GradeCourseStudent" class="control-label">Choose a grade:</label>
+                @*<input asp-for="GradeCourseStudent" class="form-control" />
+                <span asp-validation-for="GradeCourseStudent" class="text-danger"></span>*@
+                <select asp-for="GradeCourseStudent" class="form-control" >
+                    <option>0</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                    <option>9</option>
+                    <option>10</option>
+                </select>
+                <br />
+            </div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <input type="submit" value="Register" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@*<div>
+    <a asp-action="Index">Back to List</a>
+</div>*@
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

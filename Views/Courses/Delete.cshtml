@@ -1,0 +1,48 @@
+﻿@model VathmologioMVC.Models.Course
+
+@{
+    ViewData["Title"] = "Delete";
+    var professorFullName = Model.ProfessorsAfmNavigation.Name + " " + Model.ProfessorsAfmNavigation.Surname;
+    var number_of_attending_students = Model.CourseHasStudents;
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Course</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CourseTitle)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CourseTitle)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CourseSemester)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CourseSemester)
+        </dd>
+        <dt class="col-sm-2">
+            Professor:
+        </dt>
+        <dd class="col-sm-10">
+            @*@Html.DisplayFor(model => model.ProfessorsAfmNavigation.Afm)*@
+            @professorFullName
+        </dd>
+        <dt class="col-sm-2">
+            Number of Students:
+        </dt>
+        <dd class="col-sm-10">
+            @number_of_attending_students.Count()
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="IdCourse" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </form>
+</div>

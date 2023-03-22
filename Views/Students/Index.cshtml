@@ -1,0 +1,51 @@
+﻿@*@model IEnumerable<VathmologioMVC.Models.Student>*@
+@using X.PagedList.Mvc.Core
+@using X.PagedList.Web.Common
+@model X.PagedList.IPagedList<VathmologioMVC.Models.Student>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Students</h1>
+
+<p>
+    @*To be changed to "Create" not the current "Create2"*@
+    <a asp-action="Create2" class="btn btn-secondary">Create New</a>
+</p>
+
+@using (Html.BeginForm())
+{
+    <p>
+        <h4>
+            Search a student: @Html.TextBox("SearchString") 
+            <input class="btn btn-primary" type="submit" value="Search" />
+        </h4> 
+    </p>
+}
+
+<div class="container d-flex flex-wrap">
+
+    @foreach(var item in Model)
+    {
+        <partial name="_StudentCard" model="item"/>
+    }
+
+</div>
+
+<nav>
+    @*SearchString=ViewData["CurrentFilter"]*@
+    @Html.PagedListPager(Model, page => Url.Action("index", new { page = page, SearchString=ViewData["CurrentFilter"]}), new PagedListRenderOptions()
+    {
+        ActiveLiElementClass = "active",
+        PageClasses = new[]{ "page-link"},
+        LiElementClasses=new[] { "page-item" },
+        UlElementClasses = new[] { "pagination","justify-content-center", "mt-3" },
+        LinkToNextPageFormat = "Next",
+        LinkToPreviousPageFormat = "Previous",
+        MaximumPageNumbersToDisplay = 5,
+        DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+        DisplayLinkToNextPage = PagedListDisplayMode.Always,
+    
+    })
+</nav>

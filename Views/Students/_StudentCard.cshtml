@@ -1,0 +1,15 @@
+﻿@model VathmologioMVC.Models.Student
+
+<div class="card" style="width: 18rem; margin: 0.7rem;">
+    <img src="https://i.pravatar.cc/286?u=@Model.RegistrationNumber" class="card-img-top" alt="Card of student @(Model.Name + " " + Model.Surname)">
+    <div class="card-body">
+        <h5 class="card-title">@(Model.Name + " " + Model.Surname)</h5>
+        <p class="card-text">@Model.Department</p>
+        <p class="card-text">Registration number: @Model.RegistrationNumber</p>
+        <a asp-action="Details" asp-route-id="@Model.RegistrationNumber" class="btn btn-info" style="margin: 0.1rem;">Show Details</a>
+        <a asp-action="Edit" asp-route-id="@Model.RegistrationNumber" class="btn btn-warning" style="margin: 0.1rem;">Edit</a>
+        <a asp-action="Delete" asp-route-id="@Model.RegistrationNumber" class="btn btn-danger" style="margin: 0.1rem;">Delete</a>
+        <a asp-area="" asp-controller="CourseHasStudents" asp-action="Create" asp-route-id="@Model.RegistrationNumber" class="btn btn-success" style="margin: 0.1rem;">Assingn Course</a>
+    </div>
+</div>
+@*asp-route-id="@Model.RegistrationNumber"*@

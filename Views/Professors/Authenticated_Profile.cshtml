@@ -1,0 +1,42 @@
+﻿@*@model VathmologioMVC.Models.Professor*@
+@model IEnumerable<VathmologioMVC.Models.Professor>
+
+@{
+    ViewData["Title"] = "Authenticated_Profile";
+}
+
+<h1>Professor Profile</h1>
+
+@foreach(var item in Model)
+{
+    <div>
+        <hr />
+        <dl class="row">
+            <dt class = "col-sm-2">
+                Name:
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => item.Name)
+            </dd>
+            <dt class = "col-sm-2">
+                Surname:
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => item.Surname)
+            </dd>
+            <dt class = "col-sm-2">
+                Department:
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => item.Department)
+            </dd>
+            <dt class = "col-sm-2">
+                Username:
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => item.UsersUsernameNavigation.Username)
+            </dd>
+        </dl>
+    </div>
+}
+

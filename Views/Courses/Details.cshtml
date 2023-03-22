@@ -1,0 +1,44 @@
+﻿@model VathmologioMVC.Models.Course
+
+@{
+    ViewData["Title"] = "Details";
+    var professorFullName = Model.ProfessorsAfmNavigation.Name + " " + Model.ProfessorsAfmNavigation.Surname;
+    var number_of_attending_students = Model.CourseHasStudents;
+}
+
+<h1>Course Details</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CourseTitle)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CourseTitle)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CourseSemester)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CourseSemester)
+        </dd>
+        <dt class = "col-sm-2">
+            Professor:
+        </dt>
+        <dd class = "col-sm-10">
+            @*@Html.DisplayFor(model => model.ProfessorsAfmNavigation.Afm)*@
+            @professorFullName
+        </dd>
+        <dt class="col-sm-2">
+            Number of Students:
+        </dt>
+        <dd class="col-sm-10">
+            @number_of_attending_students.Count()
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.IdCourse" class="btn btn-warning">Edit</a> |
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>

@@ -1,0 +1,44 @@
+﻿@model IEnumerable<VathmologioMVC.Models.Course>
+
+@{
+    ViewData["Title"] = "Authenticated_Professor_Courses";
+}
+
+<h1>Professor's Courses</h1>
+<hr />
+<br />
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CourseTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CourseSemester)
+            </th>
+            <th>
+                Scores
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                <h4>
+                    @Html.DisplayFor(modelItem => item.CourseTitle)
+                </h4>
+            </td>
+            <td>
+                <h4>
+                    @Html.DisplayFor(modelItem => item.CourseSemester)
+                </h4>                
+            </td>
+            <td>
+                <a asp-action="Show_Scores" asp-route-course="@item.CourseTitle" class="btn btn-info">Show Scores</a> |
+                <a asp-action="Register_Scores" asp-route-course="@item.CourseTitle" class="btn btn-success">Register Scores</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

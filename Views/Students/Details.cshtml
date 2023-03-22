@@ -1,0 +1,86 @@
+﻿@model VathmologioMVC.Models.Student
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Student Details</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Surname)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Surname)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Department)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Department)
+        </dd>
+        <dt class = "col-sm-2">
+            @*@Html.DisplayNameFor(model => model.UsersUsernameNavigation)*@
+            Username:
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.UsersUsernameNavigation.Username)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.RegistrationNumber" class="btn btn-warning">Edit</a> |
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>
+<br />
+<!-- Showing all the courses that this Student Attends -->
+@*<h1>Student Courses</h1>
+<hr />
+<br />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Last Name  
+            </th>
+            <th>
+                First Name
+            </th>
+            <th>
+                Salary
+            </th>
+            <th>
+                Department
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+
+@foreach (var item in Model.CourseHasStudents)
+{
+        <tr>
+            <td>
+                @Html.DisplayFor(item => item.CourseHasStudents)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item)
+            </td>
+        </tr>    
+}
+    </tbody>
+</table>*@

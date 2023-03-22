@@ -1,0 +1,59 @@
+﻿@using X.PagedList.Mvc.Core
+@using X.PagedList.Web.Common
+@model X.PagedList.IPagedList<VathmologioMVC.Models.Course>
+@*@model IEnumerable<VathmologioMVC.Models.Course>*@
+
+@{
+    ViewData["Title"] = "Index";
+    //List<string> sortings = new List<string>();
+    //sortings.Add("Name (A->Z)");
+    //sortings.Add("Name (Z->A)");
+    //sortings.Add("Surname (A->Z)");
+    //sortings.Add("Surname (Z->A)");
+    //sortings.Add("Semester (1->8)");
+    //sortings.Add("Semester (8->1)");
+}
+
+<h1>Courses</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-secondary">Create New</a>
+</p>
+
+@using (Html.BeginForm())
+{
+    <p>
+        <h4>
+            Search a course: @Html.TextBox("SearchString") 
+            <input class="btn btn-primary" type="submit" value="Search" />
+        </h4> 
+    </p>
+}
+
+<div class="container d-flex flex-wrap">
+
+    @foreach (var item in Model)
+    {
+        <div id="card-number-@item.IdCourse">
+            <partial name="_CourseCard" model="item" />
+        </div>
+    }
+
+</div>
+
+<nav>
+    @*SearchString=ViewData["CurrentFilter"]*@
+    @Html.PagedListPager(Model, page => Url.Action("index", new { page = page, SearchString=ViewData["CurrentFilter"]}), new PagedListRenderOptions()
+    {
+        ActiveLiElementClass = "active",
+        PageClasses = new[]{ "page-link"},
+        LiElementClasses=new[] { "page-item" },
+        UlElementClasses = new[] { "pagination","justify-content-center", "mt-3" },
+        LinkToNextPageFormat = "Next",
+        LinkToPreviousPageFormat = "Previous",
+        MaximumPageNumbersToDisplay = 5,
+        DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+        DisplayLinkToNextPage = PagedListDisplayMode.Always,
+    
+    })
+</nav>

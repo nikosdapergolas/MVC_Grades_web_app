@@ -1,0 +1,73 @@
+﻿@model IEnumerable<VathmologioMVC.Models.CourseHasStudent>
+
+@{
+    ViewData["Title"] = "Assign_Course";
+}
+
+<h1>Assign a Course to this Student</h1>
+<hr />
+<br />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-controller="CourseHasStudent" asp-action="Create">
+            <div class="form-group">
+                @*<label asp-for="StudentsRegistrationNumber" class="control-label"></label>
+                <select asp-for="StudentsRegistrationNumber" class ="form-control" asp-items="ViewBag.CourseId"></select>*@
+            </div>
+            <div class="form-group">
+                @*<label asp-for="CourseIdCourse" class="control-label"></label>
+                <select asp-for="CourseIdCourse" class ="form-control" asp-items="ViewBag.CourseId"></select>*@
+                @*<label class="control-label"></label>
+                <select class ="form-control" asp-items="ViewBag.CourseId"></select>*@
+            </div>
+            <br />
+            <div class="form-group">
+                <input  type="submit" value="Assign" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+<br />
+<h2>Assigned Courses so far</h2>
+<hr />
+<br />
+
+@*<p>
+    <a asp-action="Create" class="btn btn-secondary">Assign</a>
+</p>*@
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Grade:
+            </th>
+            <th>
+                Course:
+            </th>
+            <th>
+                Student id:
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.GradeCourseStudent)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourseIdCourseNavigation.IdCourse)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StudentsRegistrationNumberNavigation.RegistrationNumber)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

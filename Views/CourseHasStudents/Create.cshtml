@@ -1,0 +1,47 @@
+﻿@model VathmologioMVC.Models.MetaData.CourseAssign
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Assign Student a Course</h1>
+<hr />
+<br />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label class="control-label">Select a course</label>
+                <select asp-for="CourseIdCourse" class ="form-control" asp-items="ViewBag.CourseIdCourse"></select>
+            </div>
+            <br />
+            <div class="form-group">
+                <label class="control-label"> For the Student:</label>
+                <select asp-for="StudentsRegistrationNumber" class ="form-control" asp-items="ViewBag.StudentsRegistrationNumber"></select>
+            </div>
+            <br />
+            @*<div class="form-group">
+                <label asp-for="GradeCourseStudent" class="control-label"></label>
+                <input asp-for="GradeCourseStudent" class="form-control" />
+                <span asp-validation-for="GradeCourseStudent" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Id" class="control-label"></label>
+                <input asp-for="Id" class="form-control" />
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <input type="submit" value="Assign" class="btn btn-secondary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@*<div>
+    <a asp-action="Index">Back to List</a>
+</div>*@
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

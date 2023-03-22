@@ -1,0 +1,15 @@
+﻿@model VathmologioMVC.Models.Course
+
+<div class="card text-center" style="width: 30rem; margin: 1rem;">
+    <div class="card-header">
+        Professor: @(Model.ProfessorsAfmNavigation.Name + " " + Model.ProfessorsAfmNavigation.Surname)
+    </div>
+
+    <div class="card-body">
+        <h3 class="card-title">@Model.CourseTitle</h3>
+        <p class="card-text">Semester: @Model.CourseSemester</p>
+        <a asp-action="Details" asp-route-id="@Model.IdCourse" class="btn btn-info">Show Details</a>
+        <a asp-action="Edit" asp-route-id="@Model.IdCourse" class="btn btn-warning">Edit</a>
+        <a asp-action="Delete" asp-route-id="@Model.IdCourse" class="btn btn-danger">Delete</a>
+    </div>
+</div>
